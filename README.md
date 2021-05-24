@@ -27,11 +27,11 @@ A few tools for making debug messages to the console more usable
 
 Yields output
 
-> Hello World! [ 2 times]
-> Hello Mars!
-> Hello World! [ 3 times]
-> I'm showing 999
-> Hello World! [ 2 times]
+> Hello World! [ 2 times]  
+> Hello Mars!  
+> Hello World! [ 3 times]  
+> I'm showing 999  
+> Hello World! [ 2 times]  
 > HELLO WORLD! [ 1000 times]
 
 
