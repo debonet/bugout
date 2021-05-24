@@ -1,0 +1,25 @@
+{
+  "name": "@debonet/bugout",
+  "version": "1.0.0",
+  "description": "A few tools to make debugging output to the console more bearable",
+  "main": "src/bugout.js",
+  "scripts": {
+    "test": "jest test/*test*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/debonet/bugout.git"
+  },
+  "keywords": [
+		"debug", "console", "output", "utility", "helper"
+	],
+  "author": "Jeremy De Bonet",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/debonet/bugout/issues"
+  },
+  "homepage": "https://github.com/debonet/bugout#readme",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
