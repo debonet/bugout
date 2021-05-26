@@ -7,7 +7,6 @@ A few tools for making debug messages to the console more usable
 ```javascript
 
 	const {D, I, E} = require( `@debonet/bugout` );
-	const {D, I, E} = require( "./DebugOutput.js" );
 
 	D("Hello World!");
 	D("Hello World!");
@@ -30,6 +29,22 @@ Yields output
 > Hello World! [ 2 times]  
 > Hello Mars!  
 > Hello World! [ 3 times]  
+> Hello World! [ 2 times]  
+> HELLO WORLD! [ 1000 times]
+
+
+Running the same code above but substituting `IKeep` for `I`, e.g.:
+
+```javascript
+	const {D, I : IKeep, E} = require( `@debonet/bugout` );
+```
+
+will yield:
+
+
+> Hello World! [ 2 times]  
+> Hello Mars!  
+> Hello World! [ 3 times]  
 > I'm showing 999  
 > Hello World! [ 2 times]  
 > HELLO WORLD! [ 1000 times]
@@ -47,6 +62,11 @@ prints values to standard out. If a line would be repeated exactly, instead of b
 ## indicate( values* )
 
 prints values to standard out, but overwrites any imediately preceeding output from an `indicate()` call.
+
+## IKeep( values* )
+## indicate_keep( values* )
+
+the same as `I()` above, but ensures that the last line is kept
 
 ## E( values* )
 ## error( values* ) 

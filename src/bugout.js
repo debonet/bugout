@@ -4,19 +4,24 @@ let cDirty = 0;
 let cDirtyRepeat = 0;
 let sLast = "";
 let cRepeat = 1;
-
+let bRetain = false;
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 function fsFromVX(vx){
 	return vx.map(( x ) => {
 		const s = Util.inspect( x );
-		return s.substring( 1, s.length - 1 );
+		if ( s[0] == "'" || s[0]=='"' ){
+			return s.substring( 1, s.length - 1 );
+		}
+		return s;
 	}).join( ' ' );
 }
 
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
-function fPrintErasableMessage( ...vx ){
+function fPrintErasableMessage( bKeepIt, ...vx ){
+	bRetain = bKeepIt;
+	
 	if ( cDirty > 0 ){
 		process.stdout.write( '\b'.repeat( cDirty ));
 	}
@@ -36,8 +41,12 @@ function fPrintErasableMessage( ...vx ){
 // ---------------------------------------------------------------------------
 function fPrintMessage( ...vx ){
 	if ( cDirty > 0 ){
-		//process.stdout.write( '\b'.repeat( cDirty ));
-		process.stdout.write( '\n');
+		if ( bRetain ) {
+			process.stdout.write( '\n');
+		}
+		else{
+			process.stdout.write( '\b'.repeat( cDirty ));
+		}
 		cDirty = 0;
 	}
 
@@ -75,9 +84,12 @@ function fErrorMessage( ...vx ){
 module.exports = fPrintMessage;
 
 Object.assign( module.exports, {
-	I : fPrintErasableMessage,
+	I : fPrintErasableMessage.bind(undefined, false),
+	IKeep : fPrintErasableMessage.bind(undefined, true),
 	D : fPrintMessage,
 	E : fErrorMessage,
+	indicate : fPrintErasableMessage.bind(undefined, false),
+	indicate_keep : fPrintErasableMessage.bind(undefined, false),
 	indicate : fPrintErasableMessage,
 	debug : fPrintMessage,
 	error : fErrorMessage

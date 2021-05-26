@@ -35,6 +35,7 @@ test("test indicate", ()=>{
 	expect(process.stdout.write.mock.calls.[5][0]).toBe("Hello, 3");
 	expect(process.stdout.write.mock.calls.[6][0]).toBe("\b\b\b\b\b\b\b\b");
 	expect(process.stdout.write.mock.calls.[7][0]).toBe("Hello, 4");
+	D();
 });
 
 test("test debug+indicate", ()=>{
@@ -50,7 +51,6 @@ test("test debug+indicate", ()=>{
 	D("Hello, World!");
 	expect(process.stdout.write).toHaveBeenCalled();
 	let n=0;
-	expect(process.stdout.write.mock.calls.[n++][0]).toBe("\n");
 	expect(process.stdout.write.mock.calls.[n++][0]).toBe("Hello, World!");
 	expect(process.stdout.write.mock.calls.[n++][0]).toBe(" [ 2 times]");
 	expect(process.stdout.write.mock.calls.[n++][0]).toBe("\n");
@@ -59,10 +59,10 @@ test("test debug+indicate", ()=>{
 	expect(process.stdout.write.mock.calls.[n++][0]).toBe("Hello, 2");
 	expect(process.stdout.write.mock.calls.[n++][0]).toBe("\b\b\b\b\b\b\b\b");
 	expect(process.stdout.write.mock.calls.[n++][0]).toBe("Hello, 3");
-	expect(process.stdout.write.mock.calls.[n++][0]).toBe("\n");
+	expect(process.stdout.write.mock.calls.[n++][0]).toBe("\b\b\b\b\b\b\b\b");
 	expect(process.stdout.write.mock.calls.[n++][0]).toBe("Hello, World!");
 	expect(process.stdout.write.mock.calls.[n++][0]).toBe(" [ 2 times]");
-	n++; // next should clear
+	expect(process.stdout.write.mock.calls.[n++][0]).toBe("\b\b\b\b\b\b\b\b\b\b\b");
 	expect(process.stdout.write.mock.calls.[n++][0]).toBe(" [ 3 times]");
 });
 
