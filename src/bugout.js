@@ -23,7 +23,11 @@ function fPrintErasableMessage( bKeepIt, ...vx ){
 	bRetain = bKeepIt;
 	
 	if ( cDirty > 0 ){
-		process.stdout.write( '\b'.repeat( cDirty ));
+		process.stdout.write(
+			'\b'.repeat( cDirty )
+				+ ' '.repeat( cDirty )
+				+ '\b'.repeat( cDirty )
+		);
 	}
 	if (sLast){
 		process.stdout.write( '\n' );

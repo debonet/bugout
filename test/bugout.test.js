@@ -29,11 +29,11 @@ test("test indicate", ()=>{
 	expect(process.stdout.write).toHaveBeenCalled();
 	expect(process.stdout.write.mock.calls.[0][0]).toBe("\n");
 	expect(process.stdout.write.mock.calls.[1][0]).toBe("Hello, 1");
-	expect(process.stdout.write.mock.calls.[2][0]).toBe("\b\b\b\b\b\b\b\b");
+	expect(process.stdout.write.mock.calls.[2][0]).toBe("\b\b\b\b\b\b\b\b        \b\b\b\b\b\b\b\b");
 	expect(process.stdout.write.mock.calls.[3][0]).toBe("Hello, 2");
-	expect(process.stdout.write.mock.calls.[4][0]).toBe("\b\b\b\b\b\b\b\b");
+	expect(process.stdout.write.mock.calls.[4][0]).toBe("\b\b\b\b\b\b\b\b        \b\b\b\b\b\b\b\b");
 	expect(process.stdout.write.mock.calls.[5][0]).toBe("Hello, 3");
-	expect(process.stdout.write.mock.calls.[6][0]).toBe("\b\b\b\b\b\b\b\b");
+	expect(process.stdout.write.mock.calls.[6][0]).toBe("\b\b\b\b\b\b\b\b        \b\b\b\b\b\b\b\b");
 	expect(process.stdout.write.mock.calls.[7][0]).toBe("Hello, 4");
 	D();
 });
@@ -55,9 +55,9 @@ test("test debug+indicate", ()=>{
 	expect(process.stdout.write.mock.calls.[n++][0]).toBe(" [ 2 times]");
 	expect(process.stdout.write.mock.calls.[n++][0]).toBe("\n");
 	expect(process.stdout.write.mock.calls.[n++][0]).toBe("Hello, 1");
-	expect(process.stdout.write.mock.calls.[n++][0]).toBe("\b\b\b\b\b\b\b\b");
+	expect(process.stdout.write.mock.calls.[n++][0]).toBe("\b\b\b\b\b\b\b\b        \b\b\b\b\b\b\b\b");;
 	expect(process.stdout.write.mock.calls.[n++][0]).toBe("Hello, 2");
-	expect(process.stdout.write.mock.calls.[n++][0]).toBe("\b\b\b\b\b\b\b\b");
+	expect(process.stdout.write.mock.calls.[n++][0]).toBe("\b\b\b\b\b\b\b\b        \b\b\b\b\b\b\b\b");
 	expect(process.stdout.write.mock.calls.[n++][0]).toBe("Hello, 3");
 	expect(process.stdout.write.mock.calls.[n++][0]).toBe("\b\b\b\b\b\b\b\b        \b\b\b\b\b\b\b\b");
 	expect(process.stdout.write.mock.calls.[n++][0]).toBe("Hello, World!");
