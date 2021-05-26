@@ -59,7 +59,7 @@ test("test debug+indicate", ()=>{
 	expect(process.stdout.write.mock.calls.[n++][0]).toBe("Hello, 2");
 	expect(process.stdout.write.mock.calls.[n++][0]).toBe("\b\b\b\b\b\b\b\b");
 	expect(process.stdout.write.mock.calls.[n++][0]).toBe("Hello, 3");
-	expect(process.stdout.write.mock.calls.[n++][0]).toBe("\b\b\b\b\b\b\b\b");
+	expect(process.stdout.write.mock.calls.[n++][0]).toBe("\b\b\b\b\b\b\b\b        \b\b\b\b\b\b\b\b");
 	expect(process.stdout.write.mock.calls.[n++][0]).toBe("Hello, World!");
 	expect(process.stdout.write.mock.calls.[n++][0]).toBe(" [ 2 times]");
 	expect(process.stdout.write.mock.calls.[n++][0]).toBe("\b\b\b\b\b\b\b\b\b\b\b");

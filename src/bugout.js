@@ -45,7 +45,11 @@ function fPrintMessage( ...vx ){
 			process.stdout.write( '\n');
 		}
 		else{
-			process.stdout.write( '\b'.repeat( cDirty ));
+			process.stdout.write(
+				'\b'.repeat( cDirty )
+					+ ' '.repeat( cDirty )
+					+ '\b'.repeat( cDirty )
+			);
 		}
 		cDirty = 0;
 	}

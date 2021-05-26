@@ -36,7 +36,7 @@ Yields output
 Running the same code above but substituting `IKeep` for `I`, e.g.:
 
 ```javascript
-	const {D, I : IKeep, E} = require( `@debonet/bugout` );
+	const {D, IKeep : I, E} = require( `@debonet/bugout` );
 ```
 
 will yield:
