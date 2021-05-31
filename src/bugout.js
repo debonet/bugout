@@ -19,22 +19,29 @@ function fsFromVX(vx){
 
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
-function fPrintErasableMessage( bKeepIt, ...vx ){
+function fPrintErasableMessage( bKeepIt, bContinue, ...vx ){
 	bRetain = bKeepIt;
 	
 	if ( cDirty > 0 ){
-		process.stdout.write(
-			'\b'.repeat( cDirty )
-				+ ' '.repeat( cDirty )
-				+ '\b'.repeat( cDirty )
-		);
+		if (bContinue){
+			process.stdout.write(' ');
+			cDirty++;
+		}
+		else{
+			process.stdout.write(
+				'\b'.repeat( cDirty )
+					+ ' '.repeat( cDirty )
+					+ '\b'.repeat( cDirty )
+			);
+			cDirty = 0;
+		}
 	}
 	if (sLast){
 		process.stdout.write( '\n' );
 	}
 
 	const s = fsFromVX( vx );
-	cDirty = s.length;
+	cDirty += s.length;
 	sLast = undefined;
 	
 	process.stdout.write( s );
@@ -82,6 +89,20 @@ function fPrintMessage( ...vx ){
 	}
 }
 
+
+// ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+process
+  .on('unhandledRejection', (reason, p) => {
+		fPrintMessage();
+  })
+  .on('uncaughtException', err => {
+		fPrintMessage();
+  })
+  .on('exit', err => {
+		fPrintMessage();
+  });
+
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 function fErrorMessage( ...vx ){
@@ -92,12 +113,22 @@ function fErrorMessage( ...vx ){
 module.exports = fPrintMessage;
 
 Object.assign( module.exports, {
-	I : fPrintErasableMessage.bind(undefined, false),
-	IKeep : fPrintErasableMessage.bind(undefined, true),
+	I : fPrintErasableMessage.bind(undefined, false, false),
+
+	IKeep : fPrintErasableMessage.bind(undefined, true, false),
+	K : fPrintErasableMessage.bind(undefined, true, false),
+	
+	IContinue : fPrintErasableMessage.bind(undefined, false, true),
+	C : fPrintErasableMessage.bind(undefined, false, true),
+
+	IContinue : fPrintErasableMessage.bind(undefined, false, true),
+	CK : fPrintErasableMessage.bind(undefined, true, true),
+
 	D : fPrintMessage,
 	E : fErrorMessage,
-	indicate : fPrintErasableMessage.bind(undefined, false),
-	indicate_keep : fPrintErasableMessage.bind(undefined, false),
+	indicate : fPrintErasableMessage.bind(undefined, false, false),
+	indicate_keep : fPrintErasableMessage.bind(undefined, true, false ),
+	indicate_continue : fPrintErasableMessage.bind(undefined, false, true),
 	indicate : fPrintErasableMessage,
 	debug : fPrintMessage,
 	error : fErrorMessage
