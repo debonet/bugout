@@ -1,6 +1,6 @@
 {
   "name": "@debonet/bugout",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A few tools to make debugging output to the console more bearable",
   "main": "src/bugout.js",
   "scripts": {
