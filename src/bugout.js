@@ -67,16 +67,18 @@ function fPrintMessage( ...vx ){
 
 	const s = fsFromVX( vx );
 
-	if (s == sLast){
-		cRepeat += 1;
+	if ( s == sLast ){
+		if ( sLast.length > 0 ){		
+			cRepeat += 1;
 
-		if ( cDirtyRepeat > 0 ){
-			process.stdout.write( '\b'.repeat( cDirtyRepeat ));
+			if ( cDirtyRepeat > 0 ){
+				process.stdout.write( '\b'.repeat( cDirtyRepeat ));
+			}
+
+			sRepeat = ` [ ${cRepeat} times]`;
+			cDirtyRepeat = sRepeat.length;
+			process.stdout.write( sRepeat );
 		}
-
-		sRepeat = ` [ ${cRepeat} times]`;
-		cDirtyRepeat = sRepeat.length;
-		process.stdout.write( sRepeat );
 	}
 	else{
 		if (sLast){
