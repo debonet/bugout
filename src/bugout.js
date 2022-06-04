@@ -97,12 +97,15 @@ function fPrintMessage( ...vx ){
 process
   .on('unhandledRejection', (reason, p) => {
 		fPrintMessage();
+		console.error("unhandledRejection error",p,"on promise",p);
   })
   .on('uncaughtException', err => {
 		fPrintMessage();
+		console.error("uncaughtException error",err);
   })
   .on('exit', err => {
 		fPrintMessage();
+		console.error("exit",err);
   });
 
 // ---------------------------------------------------------------------------
